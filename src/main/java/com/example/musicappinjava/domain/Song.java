@@ -7,14 +7,14 @@ public class Song{
     private String band;
     private String title;
     private String genre;
-    private LocalTime duration;
+    private String duration;
 
-    public Song(int id, String band, String title, String genre, int minutes, int seconds){
+    public Song(int id, String band, String title, String genre, String duration){
         this.id = id;
         this.band = band;
         this.title = title;
         this.genre = genre;
-        this.duration = LocalTime.of(0, minutes, seconds);
+        this.duration = duration;
     }
 
     public String getBand() {
@@ -49,12 +49,26 @@ public class Song{
         this.genre = genre;
     }
 
-    public LocalTime getDurationInSeconds() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDurationInSeconds(int minutes, int seconds) {
-        this.duration = LocalTime.of(0, minutes, seconds);
+    public int getDurationInSecond(){
+        String[] parts = duration.split(":");
+        return Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public String toString(){
+        return  "ID: " + id + "\n" +
+                "Band: " + band + "\n" +
+                "Title: " + title + "\n" +
+                "Genre: " + genre + "\n" +
+                "Duration: " + duration;
     }
 
 }

@@ -5,12 +5,50 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TextField?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.musicappinjava.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Playlisturi salvate: "/>
+        <ComboBox fx:id="savedPlaylistCombo" promptText="Alege playlist..."/>
+        <Label text="Filtru Gen: "/>
+        <ComboBox fx:id="genreCombo" promptText="Selecteaza..."/>
+        <Button text="Resetare" onAction="#onResetClick"/>
+    </HBox>
+
+    <TableView fx:id = "songTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="80"/>
+            <TableColumn fx:id="colBand" text="Formatie" prefWidth="190"/>
+            <TableColumn fx:id="colTitle" text="Titlu" prefWidth="190"/>
+            <TableColumn fx:id="colGenre" text="Gen" prefWidth="190"/>
+            <TableColumn fx:id="colDuration" text="Durata" prefWidth="190"/>
+        </columns>
+    </TableView>
+
+    <Separator/>
+    <Label text="Adauga cantec" style="-fx-font-weight: bold;"/>
+    <GridPane hgap="10" vgap="5">
+        <TextField fx:id="addBandField" promptText="Formatie" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="addTitleField" promptText="Titlu" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <TextField fx:id="addGenreField" promptText="Gen" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <TextField fx:id="addDurationField" promptText="Durata" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+        <Button text="Adauga" onAction="#onAddSongClick" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+    </GridPane>
+
+    <Separator/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="playlistNameField" promptText="Nume playlist nou" HBox.hgrow="ALWAYS"/>
+        <Button text="Genereaza Playlist" onAction="#onGenerateClick"/>
+    </HBox>
 </VBox>
